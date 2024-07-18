@@ -19,3 +19,9 @@ class BaseApiRequestLog(models.Model):
     errors = models.TextField(null=True, blank=True)
     status_code = models.PositiveIntegerField(null=True, blank=True, db_index=True)
     
+    class Meta:
+        abstract=True
+        verbose_name = 'API Reuqest Log'
+        
+    def __str__(self):
+        return f'{self.method} {self.path}'
