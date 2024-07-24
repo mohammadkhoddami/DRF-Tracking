@@ -23,12 +23,12 @@ class BaseLoggingMixin:
     def _get_ip_address(self, request):
         ip_address = request.META.get('HTTP_X_FORWARDED_FOR', None)
         if ip_address:
-            ip_address = ip_address.spilit(',')[0]
+            ip_address = ip_address.split(',')[0]
         else:
-            ip_address = request.META.get('REMOTE_ADDR', '').spilit(',')[0]
+            ip_address = request.META.get('REMOTE_ADDR', '').split(',')[0]
             
-        possibles = (ip_address.lstrip('[').spilit(']')[0],
-                     ip_address.spilit(':')[0])
+        possibles = (ip_address.lstrip('[').split(']')[0],
+                     ip_address.split(':')[0])
         
         for address in possibles:
             try:
